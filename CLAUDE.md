@@ -19,7 +19,8 @@ commercial.html       Commercial services
 contact.html          Contact Us form + info card
 assets/
   css/styles.css      All site styles (one file)
-  js/contact.js       Contact form handler (placeholder; see below)
+  js/contact.js       Contact form handler (sends through Web3Forms; see below)
+  js/nav.js           Mobile menu toggle
   fonts/              Self-hosted Barlow + Barlow Condensed (.woff2) and their LICENSE.txt
   images/             logo.svg, ABC member badge, site photos
 design/
@@ -34,7 +35,7 @@ CLAUDE.md, README.md
 - Each page has its own inline SVG icon sprite (`<svg class="sprite">` with `<symbol id="i-…">`)
   holding only the icons that page uses. Icons are referenced with `<use href="#i-bolt">` etc.
   To use a new icon on a page, add its `<symbol>` to that page's sprite.
-- Only contact.html loads JavaScript (`assets/js/contact.js`).
+- Every page loads `assets/js/nav.js` (mobile menu toggle); contact.html also loads `assets/js/contact.js`.
 
 ### CSS (`assets/css/styles.css`)
 - Design tokens are CSS variables in `:root` (navy, amber, red, text and surface colors, font
@@ -43,8 +44,9 @@ CLAUDE.md, README.md
   Home (hero, trust bar, about, services, split, service area, reviews), Shared (CTA band, footer),
   Residential, Project galleries, Commercial, Contact, Reduced motion.
   Put new rules in the matching section.
-- Desktop only for now: `body` has `min-width: 1200px`, and below that the page scrolls
-  sideways. Mobile layouts are planned but not built yet.
+- Responsive: the "Responsive" section (before Reduced motion) holds two media queries.
+  Below 1100px the header collapses to logo + call + menu button; below 760px every section
+  stacks into the phone layout. Add mobile overrides for a component there.
 
 ### Assets
 - Fonts are self-hosted via `@font-face` in styles.css. Don't add a Google Fonts link.
